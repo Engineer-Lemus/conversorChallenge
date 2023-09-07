@@ -1,0 +1,137 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import java.awt.Font;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.awt.event.ActionEvent;
+
+public class Conversor extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField valor;
+	private JComboBox opciones;
+	private JButton btnConvertir;
+	private JLabel resultado;
+	private JButton btnSalir;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Conversor frame = new Conversor();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Conversor() {
+		setTitle("Conversor Challenge");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(300, 100, 857, 543);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Conversor Moneda");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(78, 45, 185, 32);
+		contentPane.add(lblNewLabel);
+		
+		opciones = new JComboBox();
+		opciones.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		opciones.setModel(new DefaultComboBoxModel(new String[] {"Pesos a Dólares", "Dolares a Pesos", "Pesos a Euros", "Euros a Pesos", "Pesos a Libras Esterlinas", "Libras Esterlinas a Pesos", "Pesos a Yen Japonés", "Yen Japones a Pesos", "Pesos a Won sul-coreano", "Won sul-coreano a Pesos"}));
+		opciones.setBounds(75, 105, 312, 32);
+		contentPane.add(opciones);
+		
+		JLabel lblNewLabel_1 = new JLabel("Ingrese un Monto");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(78, 172, 169, 25);
+		contentPane.add(lblNewLabel_1);
+		
+		valor = new JTextField();
+		valor.setBounds(256, 172, 131, 25);
+		contentPane.add(valor);
+		valor.setColumns(10);
+		
+		btnConvertir = new JButton("Convertir");
+		btnConvertir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String valor2 = valor.getText();
+				double valorNum = Double.parseDouble(valor2);
+				
+				double tipoCambioDolar =17;
+				double tipoCambioEuro =17;
+				double tipoCambioLibra =17;
+				double tipoCambioYen =17;
+				double tipoCambioWon =17;
+				
+				double resultadoFinal =0;
+				 
+				DecimalFormat formatear = new DecimalFormat("0.00");
+				
+				if(opciones.getSelectedIndex() ==0) {
+					resultadoFinal = (valorNum/tipoCambioDolar);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==1) {
+					resultadoFinal = (valorNum*tipoCambioDolar);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==3) {
+					resultadoFinal = (valorNum/tipoCambioEuro);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==4) {
+					resultadoFinal = (valorNum*tipoCambioEuro);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==5) {
+					resultadoFinal = (valorNum/tipoCambioLibra);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==6) {
+					resultadoFinal = (valorNum*tipoCambioLibra);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==6) {
+					resultadoFinal = (valorNum*tipoCambioYen);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==6) {
+					resultadoFinal = (valorNum*tipoCambioYen);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==6) {
+					resultadoFinal = (valorNum*tipoCambioWon);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}else if(opciones.getSelectedIndex() ==6) {
+					resultadoFinal = (valorNum*tipoCambioWon);
+					resultado.setText("Resultado: " + formatear.format(resultadoFinal));	
+				}
+			}
+		});
+		btnConvertir.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnConvertir.setBounds(78, 285, 137, 32);
+		contentPane.add(btnConvertir);
+		
+		btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnSalir.setBounds(350, 429, 143, 45);
+		contentPane.add(btnSalir);
+		
+		resultado = new JLabel("0");
+		resultado.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		resultado.setBounds(266, 285, 319, 32);
+		contentPane.add(resultado);
+	}
+}
